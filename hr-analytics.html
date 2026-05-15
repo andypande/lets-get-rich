@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donged — A Three-Day Anatomy of the Home Run</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --panel: #1a1815;
+    --panel-2: #221f1a;
+    --ink: #ede4d3;
+    --ink-dim: #a8a092;
+    --ink-faint: #6e685e;
+    --rule: #3a342c;
+    --red: #d63b3b;
+    --red-deep: #a82a2a;
+    --orange: #e08a3c;
+    --green: #6ba24a;
+    --cream: #f4ecd8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: var(--bg); }
+
+  body {
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(214, 59, 59, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(224, 138, 60, 0.04) 0%, transparent 40%);
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px 100px;
+  }
+
+  /* ============ HERO ============ */
+  header.hero {
+    padding: 70px 0 50px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .eyebrow::before, .eyebrow::after {
+    content: "";
+    height: 1px;
+    background: var(--red);
+    flex: 0 0 28px;
+  }
+  .eyebrow::after { flex: 1; opacity: 0.4; }
+
+  h1.title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    color: var(--cream);
+  }
+
+  h1.title .donged {
+    color: var(--red);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+
+  .deck {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink-dim);
+    max-width: 640px;
+    font-weight: 400;
+    margin-top: 8px;
+  }
+
+  /* ============ STAT STRIP ============ */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 50px 0 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 22px 0;
+  }
+
+  .stat {
+    padding: 0 22px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .stat-value.red { color: var(--red); }
+  .stat-value.orange { color: var(--orange); }
+
+  /* ============ SECTION BASE ============ */
+  section {
+    padding: 70px 0 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--cream);
+  }
+
+  h2 .tier-tag {
+    display: inline-block;
+    font-size: 0.4em;
+    padding: 6px 12px;
+    background: var(--red);
+    color: var(--cream);
+    vertical-align: middle;
+    margin-right: 14px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    transform: translateY(-6px);
+  }
+  h2 .tier-tag.t2 { background: var(--orange); color: var(--bg); }
+  h2 .tier-tag.t3 { background: var(--ink-dim); color: var(--bg); }
+  h2 .tier-tag.t4 { background: var(--ink-faint); color: var(--bg); }
+
+  .section-intro {
+    font-size: 19px;
+    color: var(--ink-dim);
+    font-style: italic;
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+
+  /* ============ METRIC CARDS ============ */
+  .metric {
+    padding: 24px 0;
+    border-top: 1px dashed var(--rule);
+    display: grid;
+    grid-template-columns: minmax(200px, 280px) 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+  }
+  .metric:first-of-type { border-top: none; padding-top: 0; }
+
+  .metric-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+
+  .metric-name .threshold {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--orange);
+    display: block;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .metric-body p {
+    font-size: 16.5px;
+    color: var(--ink-dim);
+  }
+
+  .metric-body p + p { margin-top: 8px; }
+
+  .metric-body strong { color: var(--ink); font-weight: 500; }
+
+  .metric-lift {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--red);
+    text-align: right;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .metric-lift.med { color: var(--orange); }
+  .metric-lift.low { color: var(--ink-dim); }
+  .metric-lift small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* ============ FLOOR CALLOUT ============ */
+  .floor-note {
+    background: var(--panel);
+    border-left: 4px solid var(--red);
+    padding: 26px 32px;
+    margin: 40px 0 0;
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  .floor-note .heading {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: var(--red);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .floor-note ul {
+    list-style: none;
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+
+  .floor-note ul li {
+    padding: 4px 0;
+  }
+
+  .floor-note ul li span { color: var(--cream); }
+
+  /* ============ STAR TOOL CALLOUT ============ */
+  .star-tool {
+    background: var(--panel-2);
+    padding: 28px 32px;
+    margin-top: 24px;
+    border: 1px solid var(--rule);
+  }
+
+  .star-tool .breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  .star-tool .pill {
+    border-top: 2px solid var(--rule);
+    padding-top: 12px;
+  }
+
+  .star-tool .pill .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .star-tool .pill .rate {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    color: var(--cream);
+    margin-top: 6px;
+  }
+
+  .star-tool .pill .detail {
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .star-tool .pill.bomb { border-top-color: var(--red); }
+  .star-tool .pill.bomb .rate { color: var(--red); }
+
+  .star-tool .pill.star { border-top-color: var(--orange); }
+  .star-tool .pill.star .rate { color: var(--orange); }
+
+  /* ============ COMBO TABLE ============ */
+  .combo-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+
+  .combo-table thead th {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--ink-faint);
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--ink);
+    font-weight: 500;
+  }
+
+  .combo-table thead th.num { text-align: right; }
+
+  .combo-table tbody td {
+    padding: 16px 14px;
+    border-bottom: 1px dashed var(--rule);
+    color: var(--ink);
+    vertical-align: middle;
+  }
+
+  .combo-table tbody td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .combo-table tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+  .combo-table .filter-desc {
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .combo-table .lift-cell {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .combo-table .lift-cell.elite { color: var(--red); }
+  .combo-table .lift-cell.strong { color: var(--orange); }
+  .combo-table .lift-cell.good { color: var(--green); }
+
+  .combo-table .rate-cell { font-weight: 700; color: var(--cream); }
+
+  /* ============ RECOMMENDED SCREEN ============ */
+  .screen-callout {
+    background: var(--cream);
+    color: var(--bg);
+    padding: 44px 40px;
+    margin: 40px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .screen-callout::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px;
+    height: 120px;
+    background:
+      repeating-linear-gradient(45deg, var(--red) 0 6px, transparent 6px 14px);
+    opacity: 0.18;
+    pointer-events: none;
+  }
+
+  .screen-callout .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red-deep);
+    margin-bottom: 14px;
+  }
+
+  .screen-callout .screen-formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(18px, 2.6vw, 26px);
+    font-weight: 700;
+    color: var(--bg);
+    line-height: 1.4;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--red);
+    padding-left: 18px;
+  }
+
+  .screen-callout .tiebreakers-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red-deep);
+    margin: 14px 0 10px;
+  }
+
+  .screen-callout ol {
+    margin-left: 22px;
+    color: #2a251f;
+    font-size: 16px;
+  }
+
+  .screen-callout ol li {
+    padding: 4px 0;
+  }
+
+  /* ============ CAVEATS ============ */
+  .caveats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 30px;
+  }
+
+  .caveat {
+    padding: 22px;
+    background: var(--panel);
+    border-top: 3px solid var(--orange);
+  }
+
+  .caveat .num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .caveat p {
+    font-size: 15px;
+    color: var(--ink-dim);
+  }
+
+  .caveat p strong { color: var(--ink); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    margin-top: 70px;
+    padding-top: 30px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 760px) {
+    .wrap { padding: 0 18px 60px; }
+    header.hero { padding: 50px 0 40px; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-strip .stat { border-right: none; padding: 12px 14px; }
+    .stat-strip .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .metric { grid-template-columns: 1fr; gap: 12px; }
+    .metric-lift { text-align: left; font-size: 26px; }
+    .caveats { grid-template-columns: 1fr; }
+    .star-tool .breakdown { grid-template-columns: 1fr; }
+    .combo-table thead { display: none; }
+    .combo-table tbody td { display: block; padding: 6px 0; border: none; }
+    .combo-table tbody tr {
+      display: block;
+      padding: 18px 0;
+      border-bottom: 1px dashed var(--rule);
+    }
+    .combo-table tbody td.num::before {
+      content: attr(data-label) " ";
+      color: var(--ink-faint);
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .combo-table tbody td.num { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">Three-Day Field Report &nbsp;·&nbsp; May 12 – May 14, 2026</div>
+    <h1 class="title"><span class="donged">Donged.</span><br>An Anatomy of<br>the Home Run.</h1>
+    <p class="deck">What 76 home runs across 1,172 player-games tell us about which filters actually move the needle — and which ones are noise.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-label">Player-Games</div>
+        <div class="stat-value">1,172</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Home Runs</div>
+        <div class="stat-value red">76</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Base HR Rate</div>
+        <div class="stat-value orange">6.48%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Days Analyzed</div>
+        <div class="stat-value">3</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NO HARD FLOOR -->
+  <section>
+    <span class="section-num">§ 00 / PRELUDE</span>
+    <h2>There Is No Hard Floor.</h2>
+    <p class="section-intro">Before the rankings, a warning: no single metric guarantees a home run. The hitters who went deep in this sample included guys with profiles you'd otherwise pass over. Treat every threshold below as a probability multiplier, not a gate.</p>
+
+    <div class="floor-note">
+      <div class="heading">Minimums Observed Among HR Hitters</div>
+      <p>Some of the players who actually homered had these readings:</p>
+      <ul>
+        <li>Barrel% — <span>0%</span></li>
+        <li>HR/FB — <span>0%</span></li>
+        <li>Launch Angle — <span>−8.55°</span></li>
+        <li>BatSpd — <span>68 mph</span></li>
+        <li>Pull% — <span>17%</span></li>
+        <li>BlastCon% — <span>4%</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TIER 1 -->
+  <section>
+    <span class="section-num">§ 01 / HIGHEST IMPACT</span>
+    <h2><span class="tier-tag">Tier 1</span>The Big Three.</h2>
+    <p class="section-intro">These produced the largest jumps in HR rate when used as filters. If you can only filter on three things, filter on these.</p>
+
+    <div class="metric">
+      <div class="metric-name">Pull%<span class="threshold">≥ 45–50%</span></div>
+      <div class="metric-body">
+        <p>The strongest single linear signal in the logistic regression. Pulled balls are the ones that leave the yard — they meet the bat squared up and travel in the direction of the shorter foul-pole distance.</p>
+        <p>At <strong>Pull% ≥ 50%</strong>, HR rate climbs to <strong>12.2%</strong> on a 287-sample. The top standardized coefficient across all metrics.</p>
+      </div>
+      <div class="metric-lift">1.88×<small>Lift at ≥50%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">Barrel%<span class="threshold">≥ 10–12%</span></div>
+      <div class="metric-body">
+        <p>The strongest raw correlation with HR outcomes. Barrels are the optimal exit-velocity / launch-angle combinations — by definition, the contact most likely to leave the park.</p>
+        <p>At <strong>Barrel% ≥ 12%</strong>, HR rate is <strong>11.3%</strong>. Push it to ≥ 20% and you hit 12.4%, but the sample drops fast.</p>
+      </div>
+      <div class="metric-lift">1.74×<small>Lift at ≥12%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">Weather Effect<span class="threshold">≥ 0% (and especially ≥ +5%)</span></div>
+      <div class="metric-body">
+        <p>The sneakiest signal in the dataset and the most underweighted by intuition. Wind direction, temperature, and humidity all affect carry — and the effect is non-linear.</p>
+        <p>At <strong>Weather ≥ +10%</strong>, the HR rate explodes to <strong>22.4%</strong> on n=49 — the single biggest lift of any one-variable filter, though that sample is small enough to warrant some humility.</p>
+      </div>
+      <div class="metric-lift">3.46×<small>Lift at ≥+10%</small></div>
+    </div>
+  </section>
+
+  <!-- TIER 2 -->
+  <section>
+    <span class="section-num">§ 02 / STRONG SUPPORTING</span>
+    <h2><span class="tier-tag t2">Tier 2</span>The Confirmers.</h2>
+    <p class="section-intro">Strong supporting filters. Use these to stack on top of Tier 1, or as tiebreakers when the Big Three are roughly even between candidates.</p>
+
+    <div class="metric">
+      <div class="metric-name">Launch Angle<span class="threshold">≥ 12–15°</span></div>
+      <div class="metric-body">
+        <p>The #2 standardized coefficient in the regression. LA controls for the "ground-ball hitter" failure mode — even an elite barrel rate can't help you if you're pounding it into the dirt. Anything below 10° is a yellow flag.</p>
+      </div>
+      <div class="metric-lift med">1.39×<small>Lift at ≥15°</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">HR/FB<span class="threshold">≥ 15–20%</span></div>
+      <div class="metric-body">
+        <p>A decent rate-of-conversion signal, but partially redundant with Barrel%. At ≥ 20%, HR rate hits 11.6%. Useful for confirming the underlying contact quality is real and repeatable.</p>
+      </div>
+      <div class="metric-lift med">1.79×<small>Lift at ≥20%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">Star Tool Ranking<span class="threshold">Star or Bomb flag</span></div>
+      <div class="metric-body">
+        <p>Flagged players hit at <strong>13.4%</strong> on 112 player-games — a clean 2× lift over base. But the tool is not monolithic, and the breakdown reveals where the real signal sits.</p>
+
+        <div class="star-tool">
+          <div style="font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);">Star Tool Sub-Breakdown</div>
+          <div class="breakdown">
+            <div class="pill bomb">
+              <div class="label">Bomb only</div>
+              <div class="rate">17.6%</div>
+              <div class="detail">9 of 51 · 2.72×</div>
+            </div>
+            <div class="pill star">
+              <div class="label">Star only</div>
+              <div class="rate">9.8%</div>
+              <div class="detail">6 of 61 · 1.51×</div>
+            </div>
+            <div class="pill">
+              <div class="label">2nd/3rd/4th/8th</div>
+              <div class="rate">0.0%</div>
+              <div class="detail">0 of 7 · noise</div>
+            </div>
+          </div>
+          <p style="margin-top: 20px; font-size: 15px; color: var(--ink-dim);"><strong style="color: var(--ink);">Verdict:</strong> Bomb is meaningfully stronger than Star. Use the tool as a tiebreaker and confirmation signal — not as a primary filter. Random forest gave it the lowest feature importance of any input, because it carries less information per row than continuous metrics. Weight "Bomb" heavier than "Star."</p>
+        </div>
+      </div>
+      <div class="metric-lift med">2.07×<small>Combined lift</small></div>
+    </div>
+  </section>
+
+  <!-- TIER 3 -->
+  <section>
+    <span class="section-num">§ 03 / MEDIUM IMPACT</span>
+    <h2><span class="tier-tag t3">Tier 3</span>Corroborators.</h2>
+    <p class="section-intro">Don't filter on these alone, but they sharpen the picture when stacked with Tier 1 and Tier 2.</p>
+
+    <div class="metric">
+      <div class="metric-name">BlastCon%<span class="threshold">≥ 15–17%</span></div>
+      <div class="metric-body">
+        <p>A contact-quality check. At ≥ 17%, HR rate is 9.2%. Useful when paired with Barrel% as a "is the contact actually that clean?" sanity test.</p>
+      </div>
+      <div class="metric-lift low">1.41×<small>Lift at ≥17%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">Bat Speed<span class="threshold">≥ 73–75 mph</span></div>
+      <div class="metric-body">
+        <p>The raw correlation is weak, but the random forest weighted it more heavily than the linear analysis suggests — meaning it interacts non-linearly with other metrics. At ≥ 75 mph, HR rate climbs to 10.9%.</p>
+      </div>
+      <div class="metric-lift low">1.68×<small>Lift at ≥75</small></div>
+    </div>
+  </section>
+
+  <!-- TIER 4 -->
+  <section>
+    <span class="section-num">§ 04 / LOW IMPACT</span>
+    <h2><span class="tier-tag t4">Tier 4</span>The Trap.</h2>
+    <p class="section-intro">Don't be fooled. This one looks like it should matter and largely doesn't.</p>
+
+    <div class="metric">
+      <div class="metric-name">FB% (Fly Ball Rate)<span class="threshold">— skip as a filter —</span></div>
+      <div class="metric-body">
+        <p>The weakest correlation in the dataset (+0.035). Even more telling: the logistic regression assigned FB% a <strong>negative</strong> coefficient once Pull%, LA, and Barrel% were controlled for.</p>
+        <p>The interpretation: a high fly-ball rate without the quality-of-contact metrics is empty calories. Lots of pop-ups and warning-track flies. Once you've already filtered on Barrel% and Pull%, FB% adds nothing — and may actively mislead.</p>
+      </div>
+      <div class="metric-lift low">~1.0×<small>Effectively none</small></div>
+    </div>
+  </section>
+
+  <!-- COMBO STACKS -->
+  <section>
+    <span class="section-num">§ 05 / THE MONEY STACKS</span>
+    <h2>Where The Signal Lives.</h2>
+    <p class="section-intro">Single filters get you to ~1.5–2× lift. Stacked filters — the real game — get you to 3×+. These are the combinations that worked across all three days.</p>
+
+    <table class="combo-table">
+      <thead>
+        <tr>
+          <th>Filter Stack</th>
+          <th class="num">N</th>
+          <th class="num">HRs</th>
+          <th class="num">HR Rate</th>
+          <th class="num">Lift</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="filter-desc">Weather ≥ 0% + Pull% ≥ 45% + Barrel% ≥ 10%</td>
+          <td class="num" data-label="N">45</td>
+          <td class="num" data-label="HRs">10</td>
+          <td class="num rate-cell" data-label="HR Rate">22.2%</td>
+          <td class="num lift-cell elite" data-label="Lift">3.43×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">Barrel% ≥ 12% + Pull% ≥ 50% + LA ≥ 12</td>
+          <td class="num" data-label="N">70</td>
+          <td class="num" data-label="HRs">14</td>
+          <td class="num rate-cell" data-label="HR Rate">20.0%</td>
+          <td class="num lift-cell elite" data-label="Lift">3.08×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">Star Tool flagged + Weather ≥ 0%</td>
+          <td class="num" data-label="N">33</td>
+          <td class="num" data-label="HRs">6</td>
+          <td class="num rate-cell" data-label="HR Rate">18.2%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.80×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">"Bomb" label only</td>
+          <td class="num" data-label="N">51</td>
+          <td class="num" data-label="HRs">9</td>
+          <td class="num rate-cell" data-label="HR Rate">17.6%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.72×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">HR/FB ≥ 15% + Pull% ≥ 45% + Barrel% ≥ 10%</td>
+          <td class="num" data-label="N">106</td>
+          <td class="num" data-label="HRs">18</td>
+          <td class="num rate-cell" data-label="HR Rate">17.0%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.62×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">Star Tool flagged + Barrel% ≥ 10%</td>
+          <td class="num" data-label="N">77</td>
+          <td class="num" data-label="HRs">13</td>
+          <td class="num rate-cell" data-label="HR Rate">16.9%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.60×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">Barrel% ≥ 10% + Pull% ≥ 45% + LA ≥ 12 + BlastCon% ≥ 15%</td>
+          <td class="num" data-label="N">106</td>
+          <td class="num" data-label="HRs">17</td>
+          <td class="num rate-cell" data-label="HR Rate">16.0%</td>
+          <td class="num lift-cell good" data-label="Lift">2.47×</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- RECOMMENDED SCREEN -->
+  <section>
+    <span class="section-num">§ 06 / RECOMMENDED SCREEN</span>
+    <h2>The Daily Filter.</h2>
+    <p class="section-intro">Going forward, this is the three-factor primary screen that captures most of the lift without shrinking the pool too aggressively.</p>
+
+    <div class="screen-callout">
+      <div class="label">Primary Screen</div>
+      <div class="screen-formula">Pull% ≥ 45%<br>AND&nbsp;&nbsp;Barrel% ≥ 10%<br>AND&nbsp;&nbsp;Weather Effect ≥ 0%</div>
+
+      <div class="tiebreakers-label">— Tiebreakers, In Order —</div>
+      <ol>
+        <li><strong>Star Tool flag</strong>: Bomb &nbsp;&gt;&nbsp; Star &nbsp;&gt;&nbsp; unflagged</li>
+        <li><strong>Launch Angle</strong> between 12° and 20°</li>
+        <li><strong>BlastCon%</strong> ≥ 15%</li>
+        <li><strong>BatSpd</strong> ≥ 73 mph</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CAVEATS -->
+  <section>
+    <span class="section-num">§ 07 / HONEST CAVEATS</span>
+    <h2>Where This Might Be Wrong.</h2>
+    <p class="section-intro">The analysis is real but the sample is small. Three things to keep in mind as you use this.</p>
+
+    <div class="caveats">
+      <div class="caveat">
+        <div class="num">01 — SAMPLE SIZE</div>
+        <p><strong>76 HRs across 3 days is a small sample.</strong> Some precise thresholds will shift as you gather more data — especially the Weather ≥ +10% bucket (n=49). Worth re-running this analysis once you have two weeks.</p>
+      </div>
+      <div class="caveat">
+        <div class="num">02 — COLLINEARITY</div>
+        <p><strong>The metrics are correlated with each other.</strong> Barrel% ↔ HR/FB, Pull% ↔ LA, and so on. Stacking 5+ filters won't multiply lift — diminishing returns kick in fast around 3–4 filters.</p>
+      </div>
+      <div class="caveat">
+        <div class="num">03 — STAR TOOL IS DERIVATIVE</div>
+        <p><strong>The Star Tool's value comes from agreeing with the underlying metrics.</strong> When it disagrees with strong Barrel%/Pull% readings, trust the underlying metrics. Treat the flag as confirmation, not as a primary driver.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Built from 5/12 – 5/14 · 2026</span>
+    <span>1,172 player-games · 76 home runs</span>
+  </footer>
+
+</div>
+</body>
+</html>
