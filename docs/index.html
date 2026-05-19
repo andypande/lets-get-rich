@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donged — A Four-Day Anatomy of the Home Run</title>
+<title>Donged — A Six-Day Anatomy of the Home Run</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -78,6 +78,16 @@
     background: var(--green); border-radius: 50%;
     margin-right: 8px; vertical-align: middle;
   }
+  .gap-note {
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
 
   .stat-strip {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
@@ -105,6 +115,7 @@
     margin-top: 6px;
   }
   .stat-trend.dim { color: var(--ink-faint); }
+  .stat-trend.warn { color: var(--orange); }
 
   section { padding: 70px 0 10px; border-bottom: 1px solid var(--rule); }
   section:last-of-type { border-bottom: none; }
@@ -194,6 +205,18 @@
     font-size: 10px;
     color: var(--green);
     background: rgba(107, 162, 74, 0.15);
+    padding: 3px 7px;
+    margin-left: 8px;
+    letter-spacing: 0.1em;
+    vertical-align: middle;
+    transform: translateY(-3px);
+  }
+  .metric-name .demoted {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    background: rgba(224, 138, 60, 0.15);
     padding: 3px 7px;
     margin-left: 8px;
     letter-spacing: 0.1em;
@@ -481,101 +504,107 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="eyebrow">Cumulative Field Report &nbsp;·&nbsp; May 12 – May 15, 2026</div>
+    <div class="eyebrow">Cumulative Field Report &nbsp;·&nbsp; May 12 – May 18, 2026</div>
     <h1 class="title"><span class="donged">Donged.</span><br>An Anatomy of<br>the Home Run.</h1>
-    <p class="deck">What 103 home runs across 1,586 player-games tell us about which filters actually move the needle — and which ones are noise.</p>
+    <p class="deck">What 166 home runs across 2,357 player-games tell us about which filters actually move the needle — and which ones are noise.</p>
 
-    <div class="updated-tag"><span class="dot"></span>LAST UPDATED · MAY 15, 2026 · DAY 4</div>
+    <div class="updated-tag"><span class="dot"></span>LAST UPDATED · MAY 18, 2026 · DAY 6</div>
+    <span class="gap-note">⚠ MISSING DATA · 5/17</span>
 
     <div class="stat-strip">
       <div class="stat">
         <div class="stat-label">Player-Games</div>
-        <div class="stat-value">1,586</div>
-        <div class="stat-trend">+414 vs prior</div>
+        <div class="stat-value">2,357</div>
+        <div class="stat-trend">+771 vs prior</div>
       </div>
       <div class="stat">
         <div class="stat-label">Home Runs</div>
-        <div class="stat-value red">103</div>
-        <div class="stat-trend">+27 vs prior</div>
+        <div class="stat-value red">166</div>
+        <div class="stat-trend">+63 vs prior</div>
       </div>
       <div class="stat">
         <div class="stat-label">Base HR Rate</div>
-        <div class="stat-value orange">6.49%</div>
-        <div class="stat-trend dim">+0.01 pp</div>
+        <div class="stat-value orange">7.04%</div>
+        <div class="stat-trend warn">+0.55 pp</div>
       </div>
       <div class="stat">
         <div class="stat-label">Days Analyzed</div>
-        <div class="stat-value">4</div>
-        <div class="stat-trend dim">since 5/12</div>
+        <div class="stat-value">6</div>
+        <div class="stat-trend dim">5/17 absent</div>
       </div>
     </div>
   </header>
 
   <section>
-    <span class="section-num">§ 00 / WHAT CHANGED SINCE 5/14</span>
-    <h2>The Picture Sharpens.</h2>
-    <p class="section-intro">Adding 5/15 to the analysis shifted several rankings. Same methodology, larger sample. Here's what moved.</p>
+    <span class="section-num">§ 00 / WHAT CHANGED SINCE 5/15</span>
+    <h2>The Real Rankings Emerge.</h2>
+    <p class="section-intro">Adding 5/16 and 5/18 (5/17 unavailable) brought the sample to 2,357 games and 166 HRs. With 60% more data, several rankings have settled — and a few surprises surfaced.</p>
 
     <div class="changelog">
       <div class="changelog-heading">Day-Over-Day Movement</div>
 
       <div class="change-row up">
         <span class="icon">▲</span>
-        <span class="text"><strong>Launch Angle promoted to Tier 1.</strong> <span class="num">LA jumped to the #1 standardized regression coefficient (was #2). The regression now sees it as the strongest <em>independent</em> driver — even after controlling for Barrel% and Pull%, LA still matters.</span></span>
+        <span class="text"><strong>Bat Speed promoted to Tier 1.</strong> <span class="num">BatSpd ≥ 75 mph now produces 1.86× lift (was 1.92× before, but on a much larger sample of 282). It's now #1 in random-forest importance and #3 in the regression. Bigger than Barrel%.</span></span>
       </div>
 
       <div class="change-row up">
         <span class="icon">▲</span>
-        <span class="text"><strong>Bat Speed strengthened.</strong> <span class="num">BatSpd ≥ 75 mph now produces 1.92× lift (was 1.68×). Climbed to #2 in random-forest importance.</span></span>
-      </div>
-
-      <div class="change-row up">
-        <span class="icon">▲</span>
-        <span class="text"><strong>Barrel% ≥ 20% emerged as a sharper signal.</strong> <span class="num">2.10× lift at the elite threshold. Worth its own callout in Tier 1.</span></span>
+        <span class="text"><strong>Star Tool got dramatically stronger.</strong> <span class="num">Bomb-only lift climbed from 2.28× → 2.76×. Star-only from 1.69× → 1.93×. Combined Star+Bomb now 2.31× (was 1.97×). The flag is more reliable than I previously credited.</span></span>
       </div>
 
       <div class="change-row new">
         <span class="icon">★</span>
-        <span class="text"><strong>New best combo: Bomb + Barrel% ≥ 10%.</strong> <span class="num">3.26× lift on n=52. Highest single combo we've seen. The Star Tool's value, properly stacked, is bigger than I previously credited.</span></span>
+        <span class="text"><strong>Premium Screen got STRONGER, not weaker.</strong> <span class="num">"Bomb + Barrel% ≥ 10%" now yields a <em>24.64%</em> HR rate at 3.50× lift (was 3.26×). Sample grew to n=69. This is the highest-conviction filter in the dataset.</span></span>
       </div>
 
       <div class="change-row down">
         <span class="icon">▼</span>
-        <span class="text"><strong>Weather ≥ +10% lift moderated.</strong> <span class="num">Dropped from 3.46× → 2.63×. Still strong, but the day-1 sample (n=49) was running hot. Now n=76 — closer to a fair read.</span></span>
+        <span class="text"><strong>Barrel% lift compressed.</strong> <span class="num">≥ 20% threshold dropped to 1.68× (was 2.10×). Still useful, but BatSpd has overtaken it as the elite single-metric signal. Filter on both.</span></span>
       </div>
 
       <div class="change-row down">
         <span class="icon">▼</span>
-        <span class="text"><strong>BlastCon% looks more pedestrian.</strong> <span class="num">Best threshold drifted to ≥15% with 1.45× lift. The ≥17% bump from day 1 didn't hold up.</span></span>
+        <span class="text"><strong>Launch Angle lift moderated.</strong> <span class="num">Best threshold ≥ 15° now gives 1.33× (was 1.47×). Still independently meaningful in regression, but the headline lift is more modest. LA stays Tier 1 on regression strength, not lift strength.</span></span>
+      </div>
+
+      <div class="change-row down">
+        <span class="icon">▼</span>
+        <span class="text"><strong>Weather ≥ +10% continued to soften.</strong> <span class="num">Lift dropped from 2.63× → 1.83×. The mean-reversion is consistent — early days were running hot. Still real, just not as dramatic.</span></span>
+      </div>
+
+      <div class="change-row up">
+        <span class="icon">▲</span>
+        <span class="text"><strong>FB% climbed out of the trap tier.</strong> <span class="num">After 6 days, FB% finally shows a positive regression coefficient (+0.115, was −0.053). At ≥ 45%: 1.37× lift. Promoted to Tier 3.</span></span>
+      </div>
+
+      <div class="change-row new">
+        <span class="icon">★</span>
+        <span class="text"><strong>HardHit% confirmed as a real signal.</strong> <span class="num">With two days of data (n=826), HardHit% ≥ 40% holds at 1.38× lift. Drops off above 50% — same line-drive-not-carrying pattern. Graduated from Preview to Tier 3.</span></span>
       </div>
 
       <div class="change-row flat">
         <span class="icon">—</span>
-        <span class="text"><strong>Pull% and FB% held their positions.</strong> <span class="num">Pull% still elite at ≥50%. FB% still effectively useless as a standalone filter — regression coefficient remains negative.</span></span>
-      </div>
-
-      <div class="change-row new">
-        <span class="icon">★</span>
-        <span class="text"><strong>Two new metrics appeared: HardHit% and Combined Effect.</strong> <span class="num">Preliminary read in §06 — single-day sample, treat as provisional.</span></span>
+        <span class="text"><strong>Pull% held the top regression slot.</strong> <span class="num">Still the #1 standardized coefficient. ≥ 50% remains the sweet spot at 1.43× lift. Drops above 55%.</span></span>
       </div>
     </div>
   </section>
 
   <section>
     <span class="section-num">§ 01 / PRELUDE</span>
-    <h2>There Is Still No Hard Floor.</h2>
-    <p class="section-intro">Even with more data, the same warning applies. No single metric guarantees a home run. The cumulative sample includes hitters who went deep with surprisingly modest profiles.</p>
+    <h2>The Floor Just Got Lower.</h2>
+    <p class="section-intro">More data, more outliers. The minimum profiles among HR hitters keep widening. This is why no single metric is a gate — only a probability multiplier.</p>
 
     <div class="floor-note">
-      <div class="heading">Minimums Observed Among HR Hitters · 4 Days</div>
+      <div class="heading">Minimums Observed Among HR Hitters · 6 Days</div>
       <p>Some of the players who actually homered had these readings:</p>
       <ul>
         <li>Barrel% — <span>0%</span></li>
         <li>HR/FB — <span>0%</span></li>
         <li>Launch Angle — <span>−8.55°</span></li>
-        <li>BatSpd — <span>63.3 mph</span> <span class="delta">↓ was 68</span></li>
-        <li>Pull% — <span>17%</span></li>
-        <li>BlastCon% — <span>3%</span> <span class="delta">↓ was 4</span></li>
+        <li>BatSpd — <span>63.3 mph</span></li>
+        <li>Pull% — <span>0%</span> <span class="delta">↓ was 17%</span></li>
+        <li>BlastCon% — <span>2%</span> <span class="delta">↓ was 3%</span></li>
       </ul>
     </div>
   </section>
@@ -583,154 +612,145 @@
   <section>
     <span class="section-num">§ 02 / HIGHEST IMPACT</span>
     <h2><span class="tier-tag">Tier 1</span>The Big Four.</h2>
-    <p class="section-intro">These produced the largest jumps in HR rate when used as filters. Tier 1 expanded this update — Launch Angle earned its way in.</p>
+    <p class="section-intro">These four metrics produce the largest jumps in HR rate when used as filters. Bat Speed earned its way in this update. Note: lift magnitudes have compressed as the sample grew — these are now closer to "true" signal strength.</p>
 
     <div class="metric">
-      <div class="metric-name">Pull%<span class="threshold">≥ 45–50%</span></div>
+      <div class="metric-name">Pull%<span class="threshold">≥ 50% (sweet spot)</span></div>
       <div class="metric-body">
-        <p>Still the strongest linear signal alongside LA. Pulled balls are the ones that leave the yard — squared-up contact in the direction of the shorter foul-pole distance.</p>
-        <p>At <strong>Pull% ≥ 50%</strong>, HR rate is <strong>10.92%</strong> on n=403. The drop above ≥55% (back to 8.96%) suggests pulled-but-grounder territory — 50% is the sweet spot.</p>
+        <p>Held the #1 regression coefficient slot. Pulled balls travel toward the shorter foul-pole distance and represent squared-up barrel contact.</p>
+        <p>At <strong>Pull% ≥ 50%</strong>: <strong>10.06% rate (1.43×)</strong> on n=636. Drops sharply above 55% (1.12×) — that's pulled-but-grounder territory.</p>
       </div>
-      <div class="metric-lift">1.68×<small>Lift at ≥50%</small></div>
+      <div class="metric-lift">1.43×<small>Lift at ≥50%</small></div>
     </div>
 
     <div class="metric">
-      <div class="metric-name">Barrel%<span class="threshold">≥ 12% (elite at ≥20%)</span></div>
+      <div class="metric-name">Bat Speed <span class="promoted">↑ PROMOTED</span><span class="threshold">≥ 74–75 mph</span></div>
       <div class="metric-body">
-        <p>Barrels are the optimal exit-velocity / launch-angle combinations — by definition, the contact most likely to leave the park.</p>
-        <p>At <strong>≥ 12%</strong>: 10.46% rate (1.61×). At <strong>≥ 20%</strong>: <strong>13.64% (2.10×)</strong> — newly emerged as an elite-tier filter on n=132.</p>
+        <p>Promoted to Tier 1. After 6 days, BatSpd is now the strongest single Tier 1 lift — 13.12% at ≥ 75 mph on n=282 (vs n=192 last update). The random forest places it as the #1 most-important feature; the regression has it at #3.</p>
+        <p>At <strong>≥ 74 mph</strong>: 11.18% (1.59×). At <strong>≥ 75 mph</strong>: <strong>13.12% (1.86×)</strong>.</p>
       </div>
-      <div class="metric-lift">2.10×<small>Lift at ≥20%</small></div>
+      <div class="metric-lift">1.86×<small>Lift at ≥75</small></div>
     </div>
 
     <div class="metric">
-      <div class="metric-name">Launch Angle <span class="promoted">↑ PROMOTED</span><span class="threshold">≥ 15° (sweet spot 15–20°)</span></div>
+      <div class="metric-name">Barrel%<span class="threshold">≥ 12–20%</span></div>
       <div class="metric-body">
-        <p>Promoted from Tier 2 this update. After adding 5/15, LA jumped to the #1 standardized regression coefficient — meaning even when you control for Barrel%, Pull%, and contact quality, LA still has independent explanatory power.</p>
-        <p>At <strong>LA ≥ 15°</strong>: 9.56% rate (1.47×). At <strong>≥ 20°</strong>: 9.74% (1.50×). Anything below 10° is a red flag — ground balls don't leave the park.</p>
+        <p>Still essential as the contact-quality measure, but the lift compressed substantially as the sample grew. The elite ≥ 20% threshold dropped from 2.10× → 1.68×.</p>
+        <p>At <strong>≥ 12%</strong>: 10.80% (1.53×). At <strong>≥ 20%</strong>: 11.86% (1.68×). The diminishing return above 12% suggests Barrel% is best used as a baseline filter (≥10%) and stacked with other metrics.</p>
       </div>
-      <div class="metric-lift">1.50×<small>Lift at ≥20°</small></div>
+      <div class="metric-lift">1.68×<small>Lift at ≥20%</small></div>
     </div>
 
     <div class="metric">
-      <div class="metric-name">Weather Effect<span class="threshold">≥ 0% (and ideally ≥ +10%)</span></div>
+      <div class="metric-name">Launch Angle<span class="threshold">≥ 15° (sweet spot 15–20°)</span></div>
       <div class="metric-body">
-        <p>Wind direction, temperature, humidity. Lift moderated this update but remains real.</p>
-        <p>At <strong>Weather ≥ +10%</strong>, HR rate is <strong>17.11%</strong> on n=76 (down from 22.4% with a smaller sample, but still 2.63× lift). The non-linearity remains: ≥ 0% gets 1.33×, but ≥ +10% jumps to 2.63×.</p>
+        <p>Stays Tier 1 on regression strength, even though the headline lift compressed. LA's value is in being an <em>independent</em> driver — it adds signal beyond what Barrel% and Pull% already capture.</p>
+        <p>At <strong>≥ 15°</strong>: <strong>9.35% (1.33×)</strong>. Above 18° actually drops slightly (1.16×) — too steep and the ball pops up. The 15–20° band is the carry sweet spot.</p>
       </div>
-      <div class="metric-lift">2.63×<small>Lift at ≥+10%</small></div>
+      <div class="metric-lift">1.33×<small>Lift at ≥15°</small></div>
     </div>
   </section>
 
   <section>
     <span class="section-num">§ 03 / STRONG SUPPORTING</span>
     <h2><span class="tier-tag t2">Tier 2</span>The Confirmers.</h2>
-    <p class="section-intro">Strong supporting filters. Stack these on Tier 1 or use as tiebreakers.</p>
+    <p class="section-intro">Strong supporting filters. Stack on Tier 1 or use as tiebreakers when the primary screen pool is large.</p>
 
     <div class="metric">
-      <div class="metric-name">Bat Speed <span class="promoted">↑ STRONGER</span><span class="threshold">≥ 74–75 mph</span></div>
+      <div class="metric-name">Star Tool Ranking <span class="promoted">↑ STRONGER</span><span class="threshold">Bomb or Star flag</span></div>
       <div class="metric-body">
-        <p>Strengthened this update. At <strong>≥ 75 mph</strong>: 12.50% rate (1.92×) on n=192 — comfortably the strongest individual Tier 2 filter now. The random forest moved BatSpd to #2 importance, behind only LA.</p>
-        <p>Implication: when you're choosing between hitters who clear the Tier 1 screen, BatSpd is a meaningful tiebreaker.</p>
-      </div>
-      <div class="metric-lift med">1.92×<small>Lift at ≥75</small></div>
-    </div>
-
-    <div class="metric">
-      <div class="metric-name">HR/FB<span class="threshold">≥ 20–25%</span></div>
-      <div class="metric-body">
-        <p>A rate-of-conversion signal — partially redundant with Barrel% but useful for confirming the underlying contact quality is real and repeatable.</p>
-        <p>At <strong>≥ 20%</strong>: 11.15% (1.72×). At <strong>≥ 25%</strong>: 11.41% (1.76×).</p>
-      </div>
-      <div class="metric-lift med">1.76×<small>Lift at ≥25%</small></div>
-    </div>
-
-    <div class="metric">
-      <div class="metric-name">Star Tool Ranking<span class="threshold">Star or Bomb flag</span></div>
-      <div class="metric-body">
-        <p>Flagged players now hit at <strong>12.79%</strong> on 172 player-games — 1.97× base. The "Bomb" sub-flag remains meaningfully stronger than "Star," and the value compounds dramatically when stacked with contact-quality filters.</p>
+        <p>The Star Tool consolidated its position dramatically with the new data. Flagged players now hit at <strong>16.29%</strong> on 221 player-games — 2.31× base. Bomb-only is the standout: 19.42% (2.76×). When stacked with Barrel%, it produces the highest lift in the entire dataset.</p>
 
         <div class="star-tool">
-          <div style="font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);">Star Tool Sub-Breakdown · 4 Days</div>
+          <div style="font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);">Star Tool Sub-Breakdown · 6 Days</div>
           <div class="breakdown">
             <div class="pill bomb">
               <div class="label">Bomb only</div>
-              <div class="rate">14.81%</div>
-              <div class="detail">12 of 81 · 2.28×</div>
+              <div class="rate">19.42%</div>
+              <div class="detail">20 of 103 · 2.76×</div>
             </div>
             <div class="pill star">
               <div class="label">Star only</div>
-              <div class="rate">10.99%</div>
-              <div class="detail">10 of 91 · 1.69×</div>
+              <div class="rate">13.56%</div>
+              <div class="detail">16 of 118 · 1.93×</div>
             </div>
             <div class="pill">
-              <div class="label">2nd / 3rd / 4th / 8th</div>
-              <div class="rate">0.0%</div>
-              <div class="detail">0 of 7 · still noise</div>
+              <div class="label">Combined</div>
+              <div class="rate">16.29%</div>
+              <div class="detail">36 of 221 · 2.31×</div>
             </div>
           </div>
-          <p style="margin-top: 20px; font-size: 15px; color: var(--ink-dim);"><strong style="color: var(--ink);">Verdict:</strong> The Bomb-only lift held strong with the new data. But the real story is what happens when you stack Bomb with Barrel% — see the Money Stacks below, where this combination now produces the single highest lift in the entire dataset (3.26×).</p>
+          <p style="margin-top: 20px; font-size: 15px; color: var(--ink-dim);"><strong style="color: var(--ink);">Verdict:</strong> Earlier readings undersold this tool. The Bomb flag is now the strongest single-variable lift in the dataset (2.76×), and the regression places it as the #2 standardized coefficient — bigger than Barrel%, BatSpd, or LA. Stack it with contact-quality and you have the Premium Screen.</p>
         </div>
       </div>
-      <div class="metric-lift med">1.97×<small>Combined lift</small></div>
+      <div class="metric-lift med">2.31×<small>Combined lift</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">HR/FB<span class="threshold">≥ 20%</span></div>
+      <div class="metric-body">
+        <p>A rate-of-conversion signal — partially redundant with Barrel% but useful for confirming contact quality is real and repeatable.</p>
+        <p>At <strong>≥ 20%</strong>: <strong>11.43% (1.62×)</strong> on n=420. Above 25% it actually drops (1.40×) — likely sample noise / regression to mean.</p>
+      </div>
+      <div class="metric-lift med">1.62×<small>Lift at ≥20%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">Weather Effect<span class="threshold">≥ +10%</span></div>
+      <div class="metric-body">
+        <p>Continues to soften with each new day. Still real, but the early 3.46× was clearly inflated by small samples.</p>
+        <p>At <strong>≥ +10%</strong>: <strong>13.42% (1.83×)</strong> on n=149. Only available on 4 of the 6 days (5/16 had no Weather column).</p>
+      </div>
+      <div class="metric-lift med">1.83×<small>Lift at ≥+10%</small></div>
     </div>
   </section>
 
   <section>
     <span class="section-num">§ 04 / MEDIUM IMPACT</span>
     <h2><span class="tier-tag t3">Tier 3</span>Corroborators.</h2>
-    <p class="section-intro">Modest signals on their own. Useful when stacked with Tiers 1–2 to sharpen the picture.</p>
+    <p class="section-intro">Modest signals. Useful when stacked with Tiers 1–2 to sharpen the picture, but not strong enough to lead a screen.</p>
 
     <div class="metric">
-      <div class="metric-name">BlastCon%<span class="threshold">≥ 13–15%</span></div>
+      <div class="metric-name">HardHit% <span class="promoted">↑ GRADUATED</span><span class="threshold">≥ 40%</span></div>
       <div class="metric-body">
-        <p>The ≥17% bump from earlier readings didn't hold up with more data. Best plateau is now <strong>≥ 15%</strong> at 9.45% (1.45×). Useful as a "is the contact actually clean?" sanity check when paired with Barrel%.</p>
+        <p>Confirmed as a real signal with two days of data (n=826). The pattern from the preview held: peaks at ≥40% then plateaus or drops slightly above 50% — likely because high-HardHit% but low-LA hitters are crushing line drives that don't carry.</p>
+        <p>At <strong>≥ 40%</strong>: 10.05% (1.38×). Best paired with LA ≥ 15° to ensure the hard contact is also airborne.</p>
       </div>
-      <div class="metric-lift low">1.45×<small>Lift at ≥15%</small></div>
+      <div class="metric-lift low">1.38×<small>Lift at ≥40%</small></div>
     </div>
-  </section>
-
-  <section>
-    <span class="section-num">§ 05 / LOW IMPACT</span>
-    <h2><span class="tier-tag t4">Tier 4</span>The Trap.</h2>
-    <p class="section-intro">Don't be fooled. This one keeps looking like it should matter and keeps not mattering.</p>
 
     <div class="metric">
-      <div class="metric-name">FB% (Fly Ball Rate)<span class="threshold">— skip as a filter —</span></div>
+      <div class="metric-name">FB% (Fly Ball Rate) <span class="promoted">↑ OUT OF TRAP</span><span class="threshold">≥ 45%</span></div>
       <div class="metric-body">
-        <p>Verdict unchanged after 4 days. The logistic regression assigns FB% a <strong>negative</strong> coefficient once Pull%, LA, and Barrel% are controlled for. At ≥ 50%, the HR rate is 9.76% (1.50×) — but every gain here is already captured by your other filters.</p>
-        <p>A high fly-ball rate without quality-of-contact metrics is just lots of pop-ups and warning-track flies. Filter on LA and Barrel% instead.</p>
+        <p>Reversed course this update. After 4 days it had a negative regression coefficient (a trap metric). With 6 days, the coefficient flipped positive (+0.115) and the random forest now weighs it higher than HR/FB or Barrel%.</p>
+        <p>At <strong>≥ 45%</strong>: 9.64% (1.37×). Useful as a corroborator — still don't lead a screen with it, but it's no longer actively misleading.</p>
       </div>
-      <div class="metric-lift low">~1.0×<small>Effectively none</small></div>
+      <div class="metric-lift low">1.37×<small>Lift at ≥45%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">BlastCon%<span class="threshold">≥ 15%</span></div>
+      <div class="metric-body">
+        <p>Plateau pattern continued. ≥ 13% to ≥ 20% all hover around 1.27–1.33× lift — pick any threshold, similar payoff. <strong>≥ 15%</strong>: 9.39% (1.33×).</p>
+        <p>The flatness suggests BlastCon% acts more like a quality floor than a quality differentiator. Below 13% is bad; above 13% is uniform.</p>
+      </div>
+      <div class="metric-lift low">1.33×<small>Lift at ≥15%</small></div>
+    </div>
+
+    <div class="metric">
+      <div class="metric-name">Combined Effect <span class="promoted">↑ EMERGING</span><span class="threshold">≥ +5% to +10%</span></div>
+      <div class="metric-body">
+        <p>Now visible across 5 of 6 days (n=1,949). Some signal at the upper end of the distribution. At <strong>≥ +5%</strong>: 8.99% (1.26×). At <strong>≥ +10%</strong>: 9.32% (1.31×).</p>
+        <p>The HR-hitter average is meaningfully higher than non-HR (a 2pp delta), so the continuous variable carries information. The threshold sweep is just modest.</p>
+      </div>
+      <div class="metric-lift low">1.31×<small>Lift at ≥+10%</small></div>
     </div>
   </section>
 
   <section>
-    <span class="section-num">§ 06 / NEW METRICS — PROVISIONAL</span>
-    <h2><span class="tier-tag new">PREVIEW</span>Two New Inputs.</h2>
-    <p class="section-intro">The 5/15 file introduced HardHit% and Combined Effect. With only one day of data on these (n=414, 27 HRs), treat the below as directional, not definitive.</p>
-
-    <div class="preview-box">
-      <div class="heading">5/15 Single-Day Analysis · Re-Evaluate After 1 Week</div>
-
-      <div class="metric-row">
-        <div class="m-name">HardHit%<span class="thr">peak at ≥ 40%</span></div>
-        <div class="m-body">Decent positive signal. At <strong>≥ 40%</strong>: 9.33% rate vs 6.52% base. Sharply diminishing returns above 50% — likely because high-HardHit% but low-LA hitters are crushing line drives that aren't carrying. Pair this with LA.</div>
-        <div class="m-lift">1.43×<small>n=193</small></div>
-      </div>
-
-      <div class="metric-row">
-        <div class="m-name">Combined Effect<span class="thr">no clear threshold</span></div>
-        <div class="m-body">Single-day threshold sweep showed essentially no independent signal (all lifts within 0.9–1.2× of base). However, HR-hitter average was <strong>+0.3%</strong> Combined Effect vs <strong>−1.2%</strong> for non-hitters — a 1.5pp delta. May be useful as a continuous variable, not a categorical filter. <strong>Pending more data.</strong></div>
-        <div class="m-lift">≈1.0×<small>tbd</small></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <span class="section-num">§ 07 / THE MONEY STACKS</span>
+    <span class="section-num">§ 05 / THE MONEY STACKS</span>
     <h2>Where The Signal Lives.</h2>
-    <p class="section-intro">Single filters get you to 1.5–2× lift. Stacked filters get you to 3×+. These are the combinations that held up across all four days.</p>
+    <p class="section-intro">Single filters get you to 1.3–1.9× lift now that the sample is more honest. Stacked filters still cross 3×. These are the combinations holding up across all 6 days.</p>
 
     <table class="combo-table">
       <thead>
@@ -744,86 +764,93 @@
       </thead>
       <tbody>
         <tr>
-          <td class="filter-desc">Bomb + Barrel% ≥ 10%<span class="new-tag">NEW BEST</span></td>
-          <td class="num" data-label="N">52</td>
-          <td class="num" data-label="HRs">11</td>
-          <td class="num rate-cell" data-label="HR Rate">21.15%</td>
-          <td class="num lift-cell elite" data-label="Lift">3.26×</td>
+          <td class="filter-desc">Bomb + Barrel% ≥ 10%<span class="new-tag">STRONGER</span></td>
+          <td class="num" data-label="N">69</td>
+          <td class="num" data-label="HRs">17</td>
+          <td class="num rate-cell" data-label="HR Rate">24.64%</td>
+          <td class="num lift-cell elite" data-label="Lift">3.50×</td>
         </tr>
         <tr>
-          <td class="filter-desc">Barrel% ≥ 12% + Pull% ≥ 50% + LA ≥ 12</td>
-          <td class="num" data-label="N">97</td>
-          <td class="num" data-label="HRs">18</td>
-          <td class="num rate-cell" data-label="HR Rate">18.56%</td>
-          <td class="num lift-cell elite" data-label="Lift">2.86×</td>
-        </tr>
-        <tr>
-          <td class="filter-desc">Barrel% ≥ 20% + Pull% ≥ 45%</td>
-          <td class="num" data-label="N">73</td>
+          <td class="filter-desc">Bomb + Pull% ≥ 45%</td>
+          <td class="num" data-label="N">66</td>
           <td class="num" data-label="HRs">13</td>
-          <td class="num rate-cell" data-label="HR Rate">17.81%</td>
-          <td class="num lift-cell elite" data-label="Lift">2.74×</td>
+          <td class="num rate-cell" data-label="HR Rate">19.70%</td>
+          <td class="num lift-cell elite" data-label="Lift">2.80×</td>
         </tr>
         <tr>
-          <td class="filter-desc">Weather ≥ +10% + Barrel% ≥ 10%</td>
-          <td class="num" data-label="N">34</td>
-          <td class="num" data-label="HRs">6</td>
-          <td class="num rate-cell" data-label="HR Rate">17.65%</td>
-          <td class="num lift-cell elite" data-label="Lift">2.72×</td>
+          <td class="filter-desc">Weather ≥ +10% + Barrel% ≥ 10% + Pull% ≥ 45%<span class="new-tag">NEW</span></td>
+          <td class="num" data-label="N">25</td>
+          <td class="num" data-label="HRs">5</td>
+          <td class="num rate-cell" data-label="HR Rate">20.00%</td>
+          <td class="num lift-cell elite" data-label="Lift">2.84×</td>
         </tr>
         <tr>
-          <td class="filter-desc">Weather ≥ 0% + Pull% ≥ 45% + Barrel% ≥ 10%</td>
-          <td class="num" data-label="N">74</td>
-          <td class="num" data-label="HRs">12</td>
-          <td class="num rate-cell" data-label="HR Rate">16.22%</td>
-          <td class="num lift-cell strong" data-label="Lift">2.50×</td>
+          <td class="filter-desc">Star or Bomb + Barrel% ≥ 10%</td>
+          <td class="num" data-label="N">152</td>
+          <td class="num" data-label="HRs">29</td>
+          <td class="num rate-cell" data-label="HR Rate">19.08%</td>
+          <td class="num lift-cell elite" data-label="Lift">2.71×</td>
         </tr>
         <tr>
-          <td class="filter-desc">Star Tool flagged + Barrel% ≥ 10%</td>
-          <td class="num" data-label="N">115</td>
-          <td class="num" data-label="HRs">18</td>
-          <td class="num rate-cell" data-label="HR Rate">15.65%</td>
-          <td class="num lift-cell strong" data-label="Lift">2.41×</td>
+          <td class="filter-desc">Pull% ≥ 50% + Barrel% ≥ 10% + BatSpd ≥ 73<span class="new-tag">NEW</span></td>
+          <td class="num" data-label="N">151</td>
+          <td class="num" data-label="HRs">25</td>
+          <td class="num rate-cell" data-label="HR Rate">16.56%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.35×</td>
         </tr>
         <tr>
-          <td class="filter-desc">HR/FB ≥ 15% + Pull% ≥ 45% + Barrel% ≥ 10%</td>
-          <td class="num" data-label="N">141</td>
-          <td class="num" data-label="HRs">22</td>
-          <td class="num rate-cell" data-label="HR Rate">15.60%</td>
-          <td class="num lift-cell strong" data-label="Lift">2.40×</td>
-        </tr>
-        <tr>
-          <td class="filter-desc">Barrel% ≥ 10% + Pull% ≥ 45% + LA ≥ 12 + BlastCon% ≥ 15%</td>
-          <td class="num" data-label="N">143</td>
-          <td class="num" data-label="HRs">22</td>
-          <td class="num rate-cell" data-label="HR Rate">15.38%</td>
-          <td class="num lift-cell strong" data-label="Lift">2.37×</td>
+          <td class="filter-desc">BatSpd ≥ 75 + Pull% ≥ 45%<span class="new-tag">NEW</span></td>
+          <td class="num" data-label="N">126</td>
+          <td class="num" data-label="HRs">20</td>
+          <td class="num rate-cell" data-label="HR Rate">15.87%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.25×</td>
         </tr>
         <tr>
           <td class="filter-desc">BatSpd ≥ 75 + Barrel% ≥ 12%</td>
-          <td class="num" data-label="N">92</td>
-          <td class="num" data-label="HRs">13</td>
-          <td class="num rate-cell" data-label="HR Rate">14.13%</td>
-          <td class="num lift-cell good" data-label="Lift">2.18×</td>
+          <td class="num" data-label="N">135</td>
+          <td class="num" data-label="HRs">21</td>
+          <td class="num rate-cell" data-label="HR Rate">15.56%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.21×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">Pull% ≥ 50% + LA ≥ 15° + Barrel% ≥ 10%</td>
+          <td class="num" data-label="N">153</td>
+          <td class="num" data-label="HRs">23</td>
+          <td class="num rate-cell" data-label="HR Rate">15.03%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.13×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">Barrel% ≥ 12% + Pull% ≥ 50% + LA ≥ 12°</td>
+          <td class="num" data-label="N">144</td>
+          <td class="num" data-label="HRs">21</td>
+          <td class="num rate-cell" data-label="HR Rate">14.58%</td>
+          <td class="num lift-cell strong" data-label="Lift">2.07×</td>
+        </tr>
+        <tr>
+          <td class="filter-desc">HR/FB ≥ 15% + Pull% ≥ 45% + Barrel% ≥ 10%</td>
+          <td class="num" data-label="N">204</td>
+          <td class="num" data-label="HRs">29</td>
+          <td class="num rate-cell" data-label="HR Rate">14.22%</td>
+          <td class="num lift-cell good" data-label="Lift">2.02×</td>
         </tr>
       </tbody>
     </table>
   </section>
 
   <section>
-    <span class="section-num">§ 08 / RECOMMENDED SCREENS</span>
+    <span class="section-num">§ 06 / RECOMMENDED SCREENS</span>
     <h2>The Daily Filters.</h2>
-    <p class="section-intro">Two screens to use going forward — one for primary pool-building, one for high-conviction plays.</p>
+    <p class="section-intro">Two screens to use going forward. The Primary Screen got a small revision: Pull% threshold tightened to ≥50% (the new sweet spot). The Premium Screen stays the same — it just got stronger.</p>
 
     <div class="screen-callout">
       <div class="label">Primary Screen · Cast a Wide Net</div>
-      <div class="screen-formula">Pull% ≥ 45%<br>AND&nbsp;&nbsp;Barrel% ≥ 10%<br>AND&nbsp;&nbsp;Weather Effect ≥ 0%</div>
+      <div class="screen-formula">Pull% ≥ 50%<br>AND&nbsp;&nbsp;Barrel% ≥ 10%<br>AND&nbsp;&nbsp;BatSpd ≥ 73 mph</div>
 
       <div class="tiebreakers-label">— Tiebreakers, In Order —</div>
       <ol>
         <li><strong>Star Tool flag</strong>: Bomb &nbsp;&gt;&nbsp; Star &nbsp;&gt;&nbsp; unflagged</li>
+        <li><strong>Weather Effect</strong> ≥ +10% (when available)</li>
         <li><strong>Launch Angle</strong> between 15° and 20°</li>
-        <li><strong>BatSpd</strong> ≥ 75 mph</li>
         <li><strong>HR/FB</strong> ≥ 20%</li>
       </ol>
     </div>
@@ -834,44 +861,44 @@
       <div class="premium-stats">
         <div class="ps">
           <div class="ps-label">HR Rate</div>
-          <div class="ps-val">21.15%</div>
+          <div class="ps-val">24.64%</div>
         </div>
         <div class="ps">
           <div class="ps-label">Lift vs Base</div>
-          <div class="ps-val">3.26×</div>
+          <div class="ps-val">3.50×</div>
         </div>
         <div class="ps">
-          <div class="ps-label">Sample (4 days)</div>
-          <div class="ps-val">52</div>
+          <div class="ps-label">Sample (6 days)</div>
+          <div class="ps-val">69</div>
         </div>
       </div>
     </div>
   </section>
 
   <section>
-    <span class="section-num">§ 09 / HONEST CAVEATS</span>
-    <h2>Where This Might Still Be Wrong.</h2>
-    <p class="section-intro">More data has tightened the picture, but the sample is still moderate. Three things to keep in mind.</p>
+    <span class="section-num">§ 07 / HONEST CAVEATS</span>
+    <h2>What To Watch For.</h2>
+    <p class="section-intro">The picture is firmer than it was at day 4, but several things deserve attention.</p>
 
     <div class="caveats">
       <div class="caveat">
-        <div class="num">01 — SAMPLE STILL MODERATE</div>
-        <p><strong>103 HRs across 4 days is better, but not big.</strong> The Premium Screen rests on n=52. The Weather ≥ +10% reading rests on n=76. Worth re-running once we have two weeks of data.</p>
+        <div class="num">01 — LIFT COMPRESSION</div>
+        <p><strong>Every single-variable lift got smaller with more data.</strong> Barrel% ≥20% went 2.10× → 1.68×. Weather ≥+10% went 2.63× → 1.83×. This is mean-reversion, not a metric problem. Expect another ~10% compression by day 10.</p>
       </div>
       <div class="caveat">
-        <div class="num">02 — COLLINEARITY PERSISTS</div>
-        <p><strong>The metrics correlate with each other.</strong> Barrel% ↔ HR/FB, Pull% ↔ LA, LA ↔ FB%. Stacking 5+ filters won't multiply lift — diminishing returns kick in around 3–4 filters.</p>
+        <div class="num">02 — DATA GAPS</div>
+        <p><strong>5/17 is missing entirely.</strong> Also: 5/16 had no Weather column, 5/12-5/14 had no HardHit% or Combined Effect. Cross-day comparisons on those metrics use subsets, not the full sample.</p>
       </div>
       <div class="caveat">
-        <div class="num">03 — NEW METRICS ARE PROVISIONAL</div>
-        <p><strong>HardHit% and Combined Effect have only one day of data.</strong> Don't use them as primary filters yet. Re-evaluate after a week of accumulation.</p>
+        <div class="num">03 — STAR TOOL DOMINANCE</div>
+        <p><strong>The Bomb flag is doing a lot of work in the Premium Screen.</strong> If MLB's tool changes its methodology or the flag distribution shifts, the 3.50× lift could move fast. Worth verifying tool consistency periodically.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <span>Built from cumulative data: 5/12 – 5/15 · 2026</span>
-    <span>1,586 player-games · 103 home runs · 4 days</span>
+    <span>Built from cumulative data: 5/12 – 5/18 · 2026</span>
+    <span>2,357 player-games · 166 home runs · 6 days · 5/17 missing</span>
   </footer>
 
 </div>
